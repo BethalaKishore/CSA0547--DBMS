@@ -1,0 +1,187 @@
+mysql> create database student1;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> use student1;
+Database changed
+mysql> create table student(regno int,name varchar(10),gender varchar(2),dob date);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| regno  | int(11)     | YES  |     | NULL    |       |
+| name   | varchar(10) | YES  |     | NULL    |       |
+| gender | varchar(2)  | YES  |     | NULL    |       |
+| dob    | date        | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> insert into student values(192225036,'kishore','M',20050511);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into student  values(192210257,'vamsi','M',20040427);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student;
++-----------+---------+--------+------------+
+| regno     | name    | gender | dob        |
++-----------+---------+--------+------------+
+| 192211495 | kishore | M      | 2005-05-11 |
+| 192210257 | vamsi   | M      | 2004-04-27 |
++-----------+---------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> use department;
+Database changed
+mysql> desc department;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| depno   | int(10)     | NO   | PRI | 0       |       |
+| depname | varchar(10) | YES  |     | NULL    |       |
+| dephead | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.04 sec)
+
+mysql> insert into department values (2,'cse','kishore');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into department values (3,'ece','vamsi');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select *from department;
++-------+---------+-------------+
+| depno | depname | dephead     |
++-------+---------+-------------+
+|     2 | cse     | kishore     |
+|     3 | ece     | vamsi       |
++-------+---------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> use student1;
+Database changed
+mysql> create table course(courseno int(10),coursedept varchar(10),semno int(10));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc course;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| courseno   | int(10)     | YES  |     | NULL    |       |
+| coursedept | varchar(10) | YES  |     | NULL    |       |
+| semno      | int(10)     | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+3 rows in set (0.06 sec)
+
+mysql> insert into course values(1,'cse',2);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into course values (2,'ece',2);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into course values(3,'iot',2);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from course;
++----------+------------+-------+
+| courseno | coursedept | semno |
++----------+------------+-------+
+|        1 | cse        |     2 |
+|        2 | ece        |     2 |
+|        3 | iot        |     2 |
++----------+------------+-------+
+3 rows in set (0.00 sec)
+
+mysql> use student1;
+Database changed
+mysql> select *from student;
++-----------+---------+--------+------------+
+| regno     | name    | gender | dob        |
++-----------+---------+--------+------------+
+| 192225036 | kishore | M      | 2005-05-11 |
+| 192210257 | vamsi   | M      | 2004-04-27 |
++-----------+---------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> update student set name='bhargav'where regno=192210231;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *from student;
++-----------+---------+--------+------------+
+| regno     | name    | gender | dob        |
++-----------+---------+--------+------------+
+| 192225036 | kishore | M      | 2005-05-11 |
+| 192210231 | bhargav | M      | 2000-04-23 |
++-----------+---------+--------+------------+
+2 rows in set (0.00 sec)
+
+mysql> use faculty;
+Database changed
+mysql> desc faculty;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| facultyno   | int(11)     | NO   | PRI | 0       |       |
+| facultyname | varchar(10) | YES  |     | NULL    |       |
+| mobileno    | int(10)     | YES  |     | NULL    |       |
+| dateofjoin  | int(10)     | YES  |     | NULL    |       |
+| deptno      | int(10)     | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+5 rows in set (0.06 sec)
+
+mysql> insert into faculty values(22,'ram',8687467342,20220511,2);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into faculty values(21,'nani',9935461782,20230315,1);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select *from faculty;
++-----------+-------------+--------------+------------+--------+
+| facultyno | facultyname | mobileno     | dateofjoin | deptno |
++-----------+-------------+--------------+------------+--------+
+|        21 | nani        |   9935451782 |   20230315 |      1 |
+|        22 | ram         |   8687467342 |   20220511 |      2 |
++-----------+-------------+--------------+------------+--------+
+2 rows in set (0.00 sec)
+
+
+mysql> create database faculty1;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use faculty1;
+Database changed
+mysql> create table faculty(facultyno int(10),facultyname varchar(10),mobileno int(10),deptname varchar(10),gender varchar(10),age int(10),dob date);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into faculty values(1,'ramu',98765432,'cse','male',30,20021223);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into faculty values(2,'yash',98765456,'eee','male',45,20031121);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert into faculty values(3,'siva',98765435,'ece','male',50,20010803);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from faculty;
++-----------+-------------+----------+----------+--------+------+------------+
+| facultyno | facultyname | mobileno | deptname | gender | age  | dob        |
++-----------+-------------+----------+----------+--------+------+------------+
+|         1 | ramu        | 98765432 | cse      | male   |   30 | 2002-12-23 |
+|         2 | yash        | 98765456 | eee      | male   |   45 | 2003-11-21 |
+|         3 | siva        | 98765435 | ece      | male   |   50 | 2001-08-03 |
++-----------+-------------+----------+----------+--------+------+------------+
+3 rows in set (0.00 sec)
+
+mysql> delete from faculty where age=50;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select *from faculty;
++-----------+-------------+----------+----------+--------+------+------------+
+| facultyno | facultyname | mobileno | deptname | gender | age  | dob        |
++-----------+-------------+----------+----------+--------+------+------------+
+|         1 | ramu        | 98765432 | cse      | male   |   30 | 2002-12-23 |
+|         2 | yash        | 98765456 | eee      | male   |   45 | 2003-11-21 |
++-----------+-------------+----------+----------+--------+------+------------+
+2 rows in set (0.00 sec)
